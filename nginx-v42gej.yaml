@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-v42gej
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-v42gej
+  namespace: my-nginx-v42gej
+  labels:
+    name: nginx-v42gej
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-v42gej
+  template:
+    metadata:
+      namespace: my-nginx-v42gej
+      labels:
+        name: nginx-v42gej
+    spec:
+      containers:
+      - name: nginx-v42gej
+        image: nginx
+        ports:
+        - containerPort: 80
+
